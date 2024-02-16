@@ -1,0 +1,85 @@
+﻿@page "/categories"
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Collections.Generic
+@using F2P_Games_Lab4_Spr24.Data
+
+
+<h1>Games List</h1>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" @onclick="ToggleDropdown">
+        @(_category ?? "Select Category")
+    </button>
+    <div class="@(open ? "dropdown-menu show" : "dropdown-menu")">
+        @foreach (var category in categories)
+        {
+            <button class="dropdown-item" @onclick="() => SelectedCategory(category)">@category</button>
+        }
+    </div>
+</div>
+
+@if (games != null)
+{
+    <table class="table" >
+        <thead>
+            <tr>                
+                <th>Thumbnail</th>
+                <th>Description</th>
+                <th>Genre</th>
+                <th>Platform</th>
+                <th>Publisher</th>
+                <th>Developer</th>
+                <th >Release Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in games)
+            {
+                <tr>
+                   
+                    <td>
+                        <div class="image-container"><img src="@game.thumbnail" /></div>
+                    </td>
+                    <td>@game.short_description</td>
+                    <td>@game.genre</td>
+                    <td>@game.platform</td>
+                    <td>@game.publisher</td>
+                    <td>@game.developer</td>
+                    <td>@game.release_date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Choose a category from the drop down menu.</p>
+}
+
+@code {
+    private string _category;    
+    private bool open = false;
+    private List<GameModel> games;
+    private List<string> categories = new List<string> { "Action","Card","Fighting","MMO","MMORPG","MOBA","Racing","Shooter","Social","Sports","Strategy"};
+
+    
+
+    private async Task GetGamesByCategory(string category)
+    {
+        var httpClient = new HttpClient();
+        games = await httpClient.GetFromJsonAsync<List<GameModel>>($"https://www.freetogame.com/api/games?category={category}");
+    }
+
+
+    private void ToggleDropdown()
+    {
+        open = !open;
+    }
+
+    private async Task SelectedCategory(string category)
+    {
+        _category = category;
+        open = false;
+        await GetGamesByCategory(_category);
+    }
+}

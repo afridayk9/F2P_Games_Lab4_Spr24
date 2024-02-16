@@ -1,0 +1,21 @@
+﻿@page "/issues"
+<h3>Purpose</h3>
+<ul>
+    <li>The purpose of using this API was to get a list of free games across multiple platforms</li>   
+    <li><a href="https://www.freetogame.com/api-doc">https://www.freetogame.com/api-doc</a> is the link to the API I used.</li>
+</ul>
+
+<h3>The Plan</h3>
+<ul>
+    <li>The intention is to display all free games on the index page. Then, with the help of a drop down menu, select games by platform</li>
+    <li>The API I chose has several enpoints that allow the developer to get games by platform, filter games by multiple tags, get games by category, get details of a specific game, and sort games</li>
+</ul>
+<h3>API Calls</h3>
+<ul>
+    <li>The first API call will need to happen on the index page to load all the games contained in the JSON</li>
+    <li>After further inspection of the full JSON, I found that the only platform any game is categorized into is pc or windows. So I cannot organize by platform as initially intended</li>
+    <li>Instead of organizing by platform, I decided that category/genre is diverse enough to justify breaking the full list down</li>
+    <li>There will need to be an API call for each selected category</li>
+    <li>I am using a drop down menu to allow the user to choose from a pre-determined list of categories</li>
+    <li>The api call will await category selection as the web address will be completed by the category the user selects</li>  
+</ul>

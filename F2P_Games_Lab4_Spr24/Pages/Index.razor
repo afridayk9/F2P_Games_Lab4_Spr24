@@ -11,8 +11,7 @@
 {
     <table class="table">
         <thead>
-            <tr>
-                <th>Name</th>
+            <tr>                
                 <th>Thumbnail</th>                
                 <th>Description</th>                
                 <th>Genre</th>
@@ -25,8 +24,7 @@
         <tbody>
             @foreach (var game in games)
             {
-                <tr>
-                    <td>@game.title</td>
+                <tr>                    
                     <td>
                         <div class="image-container"><img src="@game.thumbnail"/></div>
                     </td>                    
@@ -35,10 +33,8 @@
                     <td>@game.platform</td>
                     <td>@game.publisher</td>
                     <td>@game.developer</td>
-                    <td>@game.release_date</td>
-                    
-                    
-                </tr>
+                    <td>@game.release_date</td>               
+                </tr>            
             }
         </tbody>
     </table>

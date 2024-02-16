@@ -1,0 +1,65 @@
+﻿@page "/"
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Collections.Generic
+@using F2P_Games_Lab4_Spr24.Data
+
+
+<h1>Games List</h1>
+
+@if (games != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Thumbnail</th>                
+                <th>Description</th>                
+                <th>Genre</th>
+                <th>Platform</th>
+                <th>Publisher</th>
+                <th>Developer</th>
+                <th>Release Date</th>
+                
+                <!-- Add other relevant columns here -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in games)
+            {
+                <tr>
+                    <td>@game.title</td>
+                    <td>
+                        <div class="image-container"><img src="@game.thumbnail"/></div>
+                    </td>                    
+                    <td>@game.short_description</td>                    
+                    <td>@game.genre</td>
+                    <td>@game.platform</td>
+                    <td>@game.publisher</td>
+                    <td>@game.developer</td>
+                    <td>@game.release_date</td>
+                    
+                    <!-- Add other relevant columns here -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private List<GameModel> games;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var httpClient = new HttpClient();
+        games = await httpClient.GetFromJsonAsync<List<GameModel>>("https://www.freetogame.com/api/games");
+    }
+}
+
+
+
+

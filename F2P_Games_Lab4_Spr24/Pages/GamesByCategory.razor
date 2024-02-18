@@ -35,8 +35,7 @@
         <tbody>
             @foreach (var game in games)
             {
-                <tr>
-                   
+                <tr>                   
                     <td>
                         <div class="image-container"><img src="@game.thumbnail" /></div>
                     </td>
@@ -64,7 +63,7 @@ else
     private string sortColumn;
     private bool ascending = true;
 
-    
+
 
     private async Task GetGamesByCategory(string category)
     {
@@ -73,10 +72,7 @@ else
     }
 
 
-    private void ToggleDropdown()
-    {
-        open = !open;
-    }
+    private void ToggleDropdown() => open = !open;
 
     private async Task SelectedCategory(string category)
     {

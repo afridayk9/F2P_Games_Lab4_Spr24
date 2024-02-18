@@ -27,9 +27,9 @@
                 <th>Description</th>
                 <th>Genre</th>
                 <th>Platform</th>
-                <th>Publisher</th>
-                <th>Developer</th>
-                <th >Release Date</th>
+                <th @onclick="() => SortBy(nameof(GameModel.publisher))">Publisher</th>
+                <th @onclick="() => SortBy(nameof(GameModel.developer))">Developer</th>
+                <th @onclick="() => SortBy(nameof(GameModel.release_date))">Release Date</th>
             </tr>
         </thead>
         <tbody>
@@ -61,6 +61,8 @@ else
     private bool open = false;
     private List<GameModel> games;
     private List<string> categories = new List<string> { "Action","Card","Fighting","MMO","MMORPG","MOBA","Racing","Shooter","Social","Sports","Strategy"};
+    private string sortColumn;
+    private bool ascending = true;
 
     
 
@@ -81,5 +83,42 @@ else
         _category = category;
         open = false;
         await GetGamesByCategory(_category);
+    }
+
+    private void SortBy(string column)
+    {
+        if (sortColumn == column)
+        {
+            ascending = !ascending;
+        }
+        else
+        {
+            sortColumn = column;
+            ascending = true;
+        }
+
+        switch (column)
+        {
+            case nameof(GameModel.publisher):
+                if (ascending)
+                    games = games.OrderBy(pub => pub.publisher).ToList();
+                else
+                    games = games.OrderByDescending(pub => pub.publisher).ToList();
+                break;
+            case nameof(GameModel.developer):
+                if (ascending)
+                    games = games.OrderBy(dev => dev.developer).ToList();
+                else
+                    games = games.OrderByDescending(dev => dev.developer).ToList();
+                break;
+            case nameof(GameModel.release_date):
+                if (ascending)
+                    games = games.OrderBy(rel => rel.release_date).ToList();
+                else
+                    games = games.OrderByDescending(rel => rel.release_date).ToList();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -4,37 +4,36 @@
 @using System.Collections.Generic
 @using F2P_Games_Lab4_Spr24.Data
 
-
 <h1>Games List</h1>
 
 @if (games != null)
 {
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <tr>                
-                <th>Thumbnail</th>                
-                <th>Description</th>                
+            <tr>
+                <th>Thumbnail</th>
+                <th>Description</th>
                 <th>Genre</th>
                 <th>Platform</th>
                 <th>Publisher</th>
                 <th>Developer</th>
-                <th>Release Date</th>               
+                <th @onclick="() => SortBy(nameof(GameModel.release_date))">Release Date</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var game in games)
             {
-                <tr>                    
+                <tr>
                     <td>
-                        <div class="image-container"><img src="@game.thumbnail"/></div>
-                    </td>                    
-                    <td>@game.short_description</td>                    
+                        <div class="image-container"><img src="@game.thumbnail" /></div>
+                    </td>
+                    <td>@game.short_description</td>
                     <td>@game.genre</td>
                     <td>@game.platform</td>
                     <td>@game.publisher</td>
                     <td>@game.developer</td>
-                    <td>@game.release_date</td>               
-                </tr>            
+                    <td>@game.release_date</td>
+                </tr>
             }
         </tbody>
     </table>
@@ -46,14 +45,41 @@ else
 
 @code {
     private List<GameModel> games;
+    private string sortColumn;
+    private bool ascending = true;
 
     protected override async Task OnInitializedAsync()
     {
         var httpClient = new HttpClient();
         games = await httpClient.GetFromJsonAsync<List<GameModel>>("https://www.freetogame.com/api/games");
     }
-}
 
+    private void SortBy(string column)
+    {
+        if (sortColumn == column)
+        {
+            ascending = !ascending;
+        }
+        else
+        {
+            sortColumn = column;
+            ascending = true;
+        }
+        
+        switch (column)
+        {            
+            case nameof(GameModel.release_date):
+                if (ascending)
+                    games = games.OrderBy(rel => rel.release_date).ToList();
+                else
+                    games = games.OrderByDescending(rel => rel.release_date).ToList();
+                break;
+            default:
+                break;
+        }
+    }
+    
+}
 
 
 

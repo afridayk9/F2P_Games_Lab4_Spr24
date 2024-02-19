@@ -1,4 +1,4 @@
-﻿@page "/categories"
+﻿@page "/genre"
 @using System.Net.Http
 @using System.Net.Http.Json
 @using System.Collections.Generic
@@ -65,10 +65,10 @@ else
 
 
 
-    private async Task GetGamesByCategory(string category)
+    private async Task GetGamesByCategory(string genre)
     {
         var httpClient = new HttpClient();
-        games = await httpClient.GetFromJsonAsync<List<GameModel>>($"https://www.freetogame.com/api/games?category={category}");
+        games = await httpClient.GetFromJsonAsync<List<GameModel>>($"https://www.freetogame.com/api/games?category={genre}");
     }
 
 

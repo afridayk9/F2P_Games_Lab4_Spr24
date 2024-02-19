@@ -3,7 +3,8 @@
 <ul>
     <li>The purpose of using this API was to get a list of free games across multiple platforms</li>   
     <li><a href="https://www.freetogame.com/api-doc">https://www.freetogame.com/api-doc</a> is the link to the API I used.</li>
-    <li>I found a site that has free, semi-free(paid for going over x amount of API calls), and paid subscriptions.<a href="https://rapidapi.com/hub">Rapid API</a></li>
+    <li>I found a site (<a href="https://rapidapi.com/hub">Rapid API</a>) that has free, semi-free(paid for going over x amount of API calls), and paid subscriptions.</li>
+    <li>The API I chose is a free one, so go nuts.</li>
 </ul>
 
 <h3>The Plan</h3>
@@ -14,10 +15,14 @@
 </ul>
 <h3>API Calls</h3>
 <ul>
-    <li>The first API call will need to happen on the index page to load all the games contained in the JSON</li>
-    <li>After further inspection of the full JSON, I found that the only platform any game is categorized into is pc or windows. So I cannot organize by platform as initially intended</li>
-    <li>Instead of organizing by platform, I decided that category/genre is diverse enough to justify breaking the full list down</li>
+    <li>The first API call will need to happen on the index page to load all the games contained in the JSON</li>    
     <li>There will need to be an API call for each selected category</li>
     <li>I am using a drop down menu to allow the user to choose from a pre-determined list of categories</li>
-    <li>The api call will await category selection as the web address will be completed by the category the user selects</li>  
+    <li>The category api call will await category selection as the web address will be completed by the category the user selects</li>  
+</ul>
+<h3>Issues</h3>
+<ul>
+    <li>After further inspection of the full JSON, I found that the only platform any game is categorized into is pc or windows. So I cannot organize by platform as initially intended</li>
+    <li>Instead of organizing by platform, I decided that category/genre is diverse enough to justify breaking the full list down</li>
+    <li>I started with a switch case to determine sorting table headers, but the sorting for publisher and developer was not working properly</li>
 </ul>

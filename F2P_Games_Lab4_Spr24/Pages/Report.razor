@@ -2,7 +2,8 @@
 
 <h3>Purpose</h3>
 <ul>
-    <li>The purpose of using this API was to get a list of free games across multiple platforms</li>   
+    <li>The purpose of using this API was to get a list of free games across multiple platforms</li>
+    <li>The information in this API includes game information such as game title, release date, publisher, description, etc.</li>
     <li><a href="https://www.freetogame.com/api-doc">https://www.freetogame.com/api-doc</a> is the link to the API I used.</li>
     <li>I found a site (<a href="https://rapidapi.com/hub">Rapid API</a>) that has free, semi-free(paid for going over x amount of API calls), and paid subscriptions.</li>
     <li>The API I chose is a free one, so go nuts.</li>
@@ -12,15 +13,19 @@
 <ul>
     <li>The intention is to display all free games on the index page. Then, with the help of a drop down menu, select games by platform</li>
     <li>The API I chose has several enpoints that allow the developer to get games by platform, filter games by multiple tags, get games by category, get details of a specific game, and sort games</li>
+    <li>All endpoints are Get methods, so I will not be able to do anything to contribute the information information.</li>
     <li>I will use a Blazor Server project to integrate this API so I can make use of the embedded image urls in each object</li>
-    <li><img src="images/gamejsonexample.jpg" alt="Example JSON of the objects contained in this API" /></li>
+    <li><img src="/images/gamejsonexample.png" asp-append-version="true" width="1250px" alt="Example JSON of the objects contained in this API"/></li>
+    <li>^This is an example of the JSON objects found in this API^</li>
 </ul>
 <h3>API Calls</h3>
 <ul>
-    <li>The first API call will need to happen on the index page to load all the games contained in the JSON</li>    
+    <li>The first API call will need to happen on the index page to load all the games contained in the JSON</li>
+    <li><img src="/images/lab4IndexCall.png" asp-append-version="true" alt="API call on the index page"</li>
     <li>There will need to be an API call for each selected category</li>
-    <li>I am using a drop down menu to allow the user to choose from a pre-determined list of categories</li>
-    <li>The category api call will await category selection as the web address will be completed by the category the user selects</li>  
+    <li><img src="/images/lab4CategoryCall.png" asp-append-version="true" alt="API call on the category page"</li>
+    <li>I am using a drop down menu on a different page to allow the user to choose from a pre-determined list of categories</li>
+    <li>The category api call will await category selection as the endpoint of the API call will be completed by the category the user selects</li>    
 </ul>
 <h3>Issues</h3>
 <ul>
